@@ -27,6 +27,8 @@ Route::apiResource('/roles', 'RoleController')->middleware('auth:api');
 
 Route::apiResource('/cancels', 'CancelController')->middleware('auth:api');
 
+Route::apiResource('/loggers', 'LoggerController')->middleware('auth:api');
+
 Route::apiResource('/categories', 'CategoryController')->middleware('auth:api');
 
 Route::apiResource('/products', 'ProductController')->middleware('auth:api');

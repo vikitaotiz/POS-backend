@@ -34,7 +34,6 @@ class TableController extends Controller
 
         $table = Table::create([
             'name' => $request->name,
-            'content' => $request->content,
             'user_id' => $request->user_id
         ]);
 
@@ -71,7 +70,6 @@ class TableController extends Controller
 
         $table->update([
             'name' => $request->name,
-            'content' => $request->content,
             'user_id' => $request->user_id
         ]);
 

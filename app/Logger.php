@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cancel extends Model
+class Logger extends Model
 {
     protected $guarded = [];
 
@@ -13,8 +13,8 @@ class Cancel extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function loggers()
+    public function cancel()
     {
-        return $this->hasMany(Logger::class);
+        return $this->belongsTo(Cancel::class);
     }
 }
