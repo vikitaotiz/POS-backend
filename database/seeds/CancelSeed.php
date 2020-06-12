@@ -25,5 +25,12 @@ class CancelSeed extends Seeder
 	        'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+
+        DB::table('cancels')->insert([
+            'description' => 'Training',
+            'user_id' => 1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
     }
 }

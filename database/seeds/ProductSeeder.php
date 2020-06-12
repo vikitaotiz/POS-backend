@@ -37,6 +37,30 @@ class ProductSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
+	        'name' => 'Muffin',
+	        'description' => 'muffin',
+	        'buying_price' => 12,
+	        'selling_price' => 14,
+	        'category_id' => 4,
+	        'item_type' => 'non_drink',
+	        'user_id' => 1,
+	        'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        DB::table('products')->insert([
+	        'name' => 'Samosa',
+	        'description' => 'samosa',
+	        'buying_price' => 11,
+	        'selling_price' => 15,
+	        'category_id' => 4,
+	        'item_type' => 'non_drink',
+	        'user_id' => 1,
+	        'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        DB::table('products')->insert([
 	        'name' => 'Eggs',
 	        'description' => 'eggs',
 	        'buying_price' => 10,
@@ -65,6 +89,18 @@ class ProductSeeder extends Seeder
 	        'description' => 'rice',
 	        'buying_price' => 15,
 	        'selling_price' => 17,
+	        'category_id' => 2,
+	        'item_type' => 'non_drink',
+	        'user_id' => 1,
+	        'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        DB::table('products')->insert([
+	        'name' => 'Kales',
+	        'description' => 'kales',
+	        'buying_price' => 10,
+	        'selling_price' => 13,
 	        'category_id' => 2,
 	        'item_type' => 'non_drink',
 	        'user_id' => 1,

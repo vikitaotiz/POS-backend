@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Logs;
+namespace App\Http\Resources\Adds;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class LoggerResource extends JsonResource
+class AdddrinkResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,12 @@ class LoggerResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'created_at' => $this->created_at->format('H:m A D M Y'),
+            'table_name' => $this->table_name,
+            'table_id' => $this->table_id,
             'content' => $this->content,
-            'desc' => $this->cancel->description,
-            'module' => $this->module,
-            'user' => $this->user->name
+            'amount' => $this->amount,
+            'user' => $this->user->name,
+            'time' => $this->created_at->format('H:m A, jS D M Y')
         ];
     }
 }

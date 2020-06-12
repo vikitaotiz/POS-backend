@@ -48,6 +48,7 @@ Route::apiResource('/tables', 'TableController')->middleware('auth:api');
 Route::apiResource('/readies', 'ReadyController')->middleware('auth:api');
 
 Route::apiResource('/adds', 'AddController')->middleware('auth:api');
+Route::apiResource('/adddrinks', 'AdddrinkController')->middleware('auth:api');
 Route::apiResource('/addpicks', 'AddpickController')->middleware('auth:api');
 
 Route::get('password', 'MpesaController@lipaNaMpesaPassword');
