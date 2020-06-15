@@ -21,6 +21,8 @@ class CreateReadiesTable extends Migration
             $table->string('table_name');
             $table->boolean('sold')->default(0);
             $table->boolean('freaze')->default(0);
+            $table->boolean('merged')->default(0);
+            $table->boolean('split')->default(0);
             $table->string('user_order');
             $table->timestamps();
         });

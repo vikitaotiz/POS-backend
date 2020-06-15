@@ -50,7 +50,7 @@ class CancelController extends Controller
     {
         $cancel = Cancel::find($id);
 
-        return $cancel;
+        return new CancelResource($cancel);
     }
 
     /**

@@ -28,6 +28,9 @@ class ReadyController extends Controller
             'table_name' => $request->table_name,
             'amount' => $request->amount,
             'sold' => $request->sold,
+            'freaze' => $request->freaze,
+            'merged' => $request->merged,
+            'split' => $request->split,
             'user_order' => $request->user_order,
             'user_id' => auth()->user()->id
         ]);
@@ -67,6 +70,8 @@ class ReadyController extends Controller
             'amount' => $request->amount,
             'sold' => $request->sold,
             'freaze' => $request->freaze,
+            'merged' => $request->merged,
+            'split' => $request->split,
             'user_order' => $request->user_order,
             'user_id' => auth()->user()->id
         ]);
