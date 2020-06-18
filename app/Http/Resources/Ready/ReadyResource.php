@@ -21,6 +21,8 @@ class ReadyResource extends JsonResource
             'content' => $this->content,
             'amount' => $this->amount,
             'freaze' => $this->freaze,
+            'merged' => $this->merged,
+            'split' => $this->split,
             'user_order' => $this->user_order,
             'user' => $this->user->name
         ];
