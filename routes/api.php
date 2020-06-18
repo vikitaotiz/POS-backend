@@ -18,7 +18,12 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/register', 'AuthController@register');
     Route::post('/login', 'AuthController@login');
     Route::post('/logout', 'AuthController@logout');
+
+    Route::post('/pin_login', 'AuthController@pin_login');
+    
 });
+
+Route::post('/pin_login', 'PinController@pin_login');
 
 Route::get('/user', 'AuthController@user')->middleware('auth:api');
 

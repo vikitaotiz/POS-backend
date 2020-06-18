@@ -8,9 +8,30 @@ use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\RegisterResource;
 use App\Http\Resources\LoginResource;
+use App\Http\Resources\PinLoginResource;
+use Auth;
 
 class AuthController extends Controller
 {
+    public function pin_login(Request $request){
+
+        $user = User::where('pin',$request->pin)->first();
+
+        if($user) {
+
+            if(!$token = auth()->attempt(['email' => $user->email, 'password' => $user->pwd_clr])){
+            return response()->json(['error' => 'Unauthorized'], 401);
+            }
+
+            return (new PinLoginResource($user))->additional([
+                'token' => $token
+            ]); 
+        }
+
+        return response()->json(['error' => 'user with this pin does not exist']);
+
+    }
+
     public function register(RegisterRequest $request)
     {
         $user = User::create([

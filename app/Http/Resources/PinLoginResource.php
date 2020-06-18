@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Users;
+namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class PinLoginResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,15 +14,13 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        return return [
+        return [
             'id' => $this->id,
             'name' => $this->name,
-            'department_id' => $this->department_id,
-            'role_id' => $this->role_id,
             'email' => $this->email,
-            'password' => $this->password,
             'pwd_clr' => $this->pwd_clr,
             'created_at' => $this->created_at->diffForHumans(),
+            'role' => $this->role->name,
             'department' => $this->department->name
         ];
     }
