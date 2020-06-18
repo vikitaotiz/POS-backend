@@ -25,5 +25,19 @@ class UserSeeder extends Seeder
 	        'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Test User',
+            'email' => 'test@email.com',
+            'role_id' => 2,
+            'department_id' => 2,
+            'pin' => 1125,
+            'pwd_clr' => 'password',
+            'email_verified_at' => now(),
+            'password' => '123456',
+            'remember_token' => Str::random(10),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
     }
 }
