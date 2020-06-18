@@ -15,7 +15,7 @@ class AuthController extends Controller
 {
     public function pin_login(Request $request){
 
-        $user = User::where('pin',$request->pin)->first();
+        $user = User::where('pin', $request->pin)->first();
 
         if($user) {
 
@@ -37,7 +37,8 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'pwd_clr' => $request->password
         ]);
 
         if(!$token = auth()->attempt($request->only(['email', 'password']))){

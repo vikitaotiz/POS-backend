@@ -23,8 +23,6 @@ Route::group(['prefix' => 'auth'], function () {
     
 });
 
-Route::post('/pin_login', 'PinController@pin_login');
-
 Route::get('/user', 'AuthController@user')->middleware('auth:api');
 
 Route::apiResource('/departments', 'DepartmentController')->middleware('auth:api');

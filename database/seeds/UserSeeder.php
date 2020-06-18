@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'pin' => 1123,
 	        'pwd_clr' => 'password',
 	        'email_verified_at' => now(),
-	        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+	        'password' => bcrypt('password'),
 	        'remember_token' => Str::random(10),
 	        'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -32,9 +32,23 @@ class UserSeeder extends Seeder
             'role_id' => 2,
             'department_id' => 2,
             'pin' => 1125,
-            'pwd_clr' => '123456',
+            'pwd_clr' => 'welcome',
             'email_verified_at' => now(),
-            'password' => '123456',
+            'password' => bcrypt('welcome'),
+            'remember_token' => Str::random(10),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Test User 1',
+            'email' => 'test1@email.com',
+            'role_id' => 2,
+            'department_id' => 2,
+            'pin' => 1130,
+            'pwd_clr' => 'welcome1',
+            'email_verified_at' => now(),
+            'password' => bcrypt('welcome1'),
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
