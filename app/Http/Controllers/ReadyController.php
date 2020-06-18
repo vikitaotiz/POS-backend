@@ -52,6 +52,16 @@ class ReadyController extends Controller
         return new ReadyResource($ready);
     }
 
+    public function split_ready($id)
+    {
+        $ready = Ready::findOrFail($id);
+
+        $ready->split = 1;
+        $ready->save();
+
+        return new ReadyResource($ready);
+    }
+
 
     /**
      * Update the specified resource in storage.
