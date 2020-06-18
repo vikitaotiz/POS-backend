@@ -41,7 +41,7 @@ class UserController extends Controller
             'pwd_clr' => $request->password
         ]);
 
-        return $user;
+        return new UsersResource($user);
     }
 
     /**
