@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'role_id' => 2,
             'department_id' => 2,
             'pin' => 1125,
-            'pwd_clr' => 'password',
+            'pwd_clr' => '1125',
             'email_verified_at' => now(),
             'password' => '123456',
             'remember_token' => Str::random(10),
