@@ -62,7 +62,46 @@ class ReadyController extends Controller
         return new ReadyResource($ready);
     }
 
+    public function merge_ready($id)
+    {
+        $ready = Ready::findOrFail($id);
+        $ready->merged = 1;
+        $ready->save();
 
+        return new ReadyResource($ready);
+    }
+
+    public function unmerge_ready()
+    {
+        $readys = Ready::where('split', 0)->get();
+
+        foreach ($readys as $table) {
+            $table->merged = 0;
+            $table->save();
+        }
+    
+        return ReadyResource::collection($readys);
+    }
+
+    public function undo_table_split_ready($id)
+    {
+        $ready = Ready::findOrFail($id);
+        
+        $ready->split = 0;
+        $ready->save();
+
+        return new ReadyResource($ready);
+    }
+
+    public function undo_table_merge_ready($id)
+    {
+        $ready = Ready::findOrFail($id);
+        
+        $ready->merged = 0;
+        $ready->save();
+
+        return new ReadyResource($ready);
+    }
     /**
      * Update the specified resource in storage.
      *

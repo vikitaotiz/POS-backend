@@ -52,6 +52,14 @@ Route::apiResource('/readies', 'ReadyController')->middleware('auth:api');
 
 Route::get('/split_ready/{id}', 'ReadyController@split_ready')->middleware('auth:api');
 
+Route::get('/merge_ready/{id}', 'ReadyController@merge_ready')->middleware('auth:api');
+
+Route::get('/unmerge_ready', 'ReadyController@unmerge_ready')->middleware('auth:api');
+
+Route::get('/undo_table_split_ready/{id}', 'ReadyController@undo_table_split_ready')->middleware('auth:api');
+
+Route::get('/undo_table_merge_ready/{id}', 'ReadyController@undo_table_merge_ready')->middleware('auth:api');
+
 Route::apiResource('/adds', 'AddController')->middleware('auth:api');
 Route::apiResource('/adddrinks', 'AdddrinkController')->middleware('auth:api');
 Route::apiResource('/addpicks', 'AddpickController')->middleware('auth:api');
