@@ -36,6 +36,8 @@ Route::apiResource('/categories', 'CategoryController')->middleware('auth:api');
 
 Route::apiResource('/products', 'ProductController')->middleware('auth:api');
 
+Route::apiResource('/addons', 'AddonController')->middleware('auth:api');
+
 Route::apiResource('/carts', 'CartController')->middleware('auth:api');
 
 Route::apiResource('/drinks', 'DrinkController')->middleware('auth:api');

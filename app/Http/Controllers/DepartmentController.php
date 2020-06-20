@@ -40,7 +40,7 @@ class DepartmentController extends Controller
             'description' => $request->description
         ]);
 
-        return new DepartmentResource($department);
+        return new DepartmentsResource($department);
     }
 
     /**
