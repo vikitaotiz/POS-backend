@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Ready;
-use App\Http\Resources\Ready\ReadyResource;
+use App\Bill;
+use App\Http\Resources\Bills\BillResource;
 
-class ReadyController extends Controller
+class BillController extends Controller
 {
     public function index()
     {
-        $readys = Ready::all();
+        $bills = Bill::all();
     
-        return ReadyResource::collection($readys);
+        return BillResource::collection($bills);
     }
 
     /**
@@ -23,19 +23,17 @@ class ReadyController extends Controller
      */
     public function store(Request $request)
     {
-        $ready = Ready::create([
-            'content' => $request->content,
-            'table_name' => $request->table_name,
+        $bill = Bill::create([
             'amount' => $request->amount,
             'sold' => $request->sold,
             'freaze' => $request->freaze,
-            'merged' => $request->merged,
             'split' => $request->split,
-            'user_order' => $request->user_order,
-            'user_id' => auth()->user()->id
+            'merged' => $request->merged,
+            'content' => $request->content,
+            'user_id' => $request->user_id
         ]);
 
-        return new ReadyResource($ready);
+        return new BillResource($bill);
 
     }
 
@@ -47,10 +45,11 @@ class ReadyController extends Controller
      */
     public function show($id)
     {
-        $ready = Ready::findOrFail($id);
+        $bill = Bill::findOrFail($id);
         
-        return new ReadyResource($ready);
+        return $bill;
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -61,21 +60,17 @@ class ReadyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ready = Ready::findOrFail($id);
-
-        $ready->update([
-            'content' => $request->content,
-            'table_name' => $request->table_name,
-            'amount' => $request->amount,
+        $bill = Bill::whereId($id)->update([
+           	'amount' => $request->amount,
             'sold' => $request->sold,
             'freaze' => $request->freaze,
-            'merged' => $request->merged,
             'split' => $request->split,
-            'user_order' => $request->user_order,
-            'user_id' => auth()->user()->id
+            'merged' => $request->merged,
+            'content' => $request->content,
+            'user_id' => $request->user_id
         ]);
 
-        return new ReadyResource($ready);
+        return $bill;
     }
 
     /**
@@ -86,10 +81,10 @@ class ReadyController extends Controller
      */
     public function destroy($id)
     {
-        $ready = Ready::findOrFail($id);
+        $bill = Bill::findOrFail($id);
         
-        $ready->delete();
+        $bill->delete();
 
-		return response()->json(['message' => 'Ready deleted successfully!']);
+		return response()->json(['message' => 'Bill deleted successfully!']);
     }
 }
