@@ -10,7 +10,7 @@ class AdddrinkController extends Controller
 {
      public function index()
     {
-        $adddrinks = Adddrink::all();
+        $adddrinks = Adddrink::latest()->get();
     
         return AdddrinkResource::collection($adddrinks);
     }
