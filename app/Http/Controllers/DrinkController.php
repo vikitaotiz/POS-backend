@@ -13,7 +13,7 @@ class DrinkController extends Controller
      public function index()
     {
         $drinks = Drink::latest()->get();
-    
+
         return DrinkResource::collection($drinks);
     }
 
@@ -45,7 +45,7 @@ class DrinkController extends Controller
     public function show($id)
     {
         $drink = Drink::findOrFail($id);
-        
+
         return $drink;
     }
 
@@ -57,16 +57,18 @@ class DrinkController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateDrink $request, $id)
+    public function update(Request $request, $id)
     {
-        $drink = Drink::whereId($id)->update([
+        $drink = Drink::findOrFail($id);
+
+        $drink->update([
             'content' => $request->content,
             'table_name' => $request->table_name,
             'amount' => $request->amount,
             'user_id' => auth()->user()->id
         ]);
 
-        return $drink;
+        return new DrinkResource($drink);
     }
 
     /**
@@ -78,7 +80,7 @@ class DrinkController extends Controller
     public function destroy($id)
     {
         $drink = Drink::findOrFail($id);
-        
+
         $drink->delete();
 
 		return response()->json(['message' => 'Drink deleted successfully!']);

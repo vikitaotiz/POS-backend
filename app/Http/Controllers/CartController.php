@@ -13,7 +13,7 @@ class CartController extends Controller
     public function index()
     {
         $carts = Cart::latest()->get();
-    
+
         return CartResource::collection($carts);
     }
 
@@ -45,7 +45,7 @@ class CartController extends Controller
     public function show($id)
     {
         $cart = Cart::findOrFail($id);
-        
+
         return $cart;
     }
 
@@ -59,14 +59,16 @@ class CartController extends Controller
      */
     public function update(UpdateCart $request, $id)
     {
-        $cart = Cart::whereId($id)->update([
+        $cart = Cart::findOrFail($id);
+
+        $cart->update([
             'content' => $request->content,
             'table_name' => $request->table_name,
             'amount' => $request->amount,
             'user_id' => auth()->user()->id
         ]);
 
-        return $cart;
+        return new CartResource($cart);
     }
 
     /**
@@ -78,7 +80,7 @@ class CartController extends Controller
     public function destroy($id)
     {
         $cart = Cart::findOrFail($id);
-        
+
         $cart->delete();
 
 		return response()->json(['message' => 'Cart deleted successfully!']);
