@@ -20,7 +20,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/logout', 'AuthController@logout');
 
     Route::post('/pin_login', 'AuthController@pin_login');
-    
+
 });
 
 Route::get('/user', 'AuthController@user')->middleware('auth:api');
@@ -51,6 +51,15 @@ Route::apiResource('/drinks', 'DrinkController')->middleware('auth:api');
 Route::apiResource('/picks', 'PickController')->middleware('auth:api');
 
 Route::apiResource('/sales', 'SaleController')->middleware('auth:api');
+
+Route::get('/cashSalesIn24hrs', 'SaleController@cashSalesIn24hrs')->middleware('auth:api');
+Route::get('/mpesaSalesIn24hrs', 'SaleController@mpesaSalesIn24hrs')->middleware('auth:api');
+Route::get('/cardSalesIn24hrs', 'SaleController@cardSalesIn24hrs')->middleware('auth:api');
+Route::get('/creditSalesIn24hrs', 'SaleController@creditSalesIn24hrs')->middleware('auth:api');
+Route::post('/sales_report', 'SaleController@salesReport')->middleware('auth:api');
+Route::get('/all_sales_in_24hrs', 'SaleController@allSalesIn24hrs')->middleware('auth:api');
+Route::post('/sales_report_all', 'SaleController@salesReportAll')->middleware('auth:api');
+Route::get('/sales_last_seven_days', 'SaleController@salesLastSevenDays')->middleware('auth:api');
 
 Route::apiResource('/users', 'UserController')->middleware('auth:api');
 
