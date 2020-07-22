@@ -15,7 +15,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function index()
     {
         $users = User::latest()->get();
@@ -65,20 +65,17 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {   
+    {
         $user = User::find($id);
-        // dd($request->all());
-        // $this->validate($request, [
-        //     'name' => 'required',
-        //     'email' => 'email'
-        // ]);
 
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
+            'role_id' => $request->role_id,
             'department_id' => $request->department_id,
-            'role_id' => $request->role_id
-            // 'password' => bcrypt($request->password)
+            'pin' => $request->pin,
+            'password' => bcrypt($request->password),
+            'pwd_clr' => $request->password
         ]);
 
         return $user;
@@ -93,7 +90,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $user = User::find($id);
-        
+
         $user->delete();
 
         return response()->json(['message' => 'User deleted successfully']);
