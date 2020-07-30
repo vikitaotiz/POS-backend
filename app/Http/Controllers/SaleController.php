@@ -52,7 +52,7 @@ class SaleController extends Controller
             ]);
 
             return new SaleResource($sale);
-        // }
+        }
     }
 
     /**
