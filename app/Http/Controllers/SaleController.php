@@ -15,7 +15,7 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales = Sale::all();
+        $sales = Sale::latest()->get();
 
         return SaleResource::collection($sales);
     }
@@ -52,7 +52,7 @@ class SaleController extends Controller
             ]);
 
             return new SaleResource($sale);
-        }
+        // }
     }
 
     /**
@@ -224,7 +224,7 @@ class SaleController extends Controller
             $fiveDaysAgo_sales->count(),
             $sixDaysAgo_sales->count()
         );
-        
+
         return $sales;
     }
 }

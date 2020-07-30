@@ -11,7 +11,7 @@ class BillController extends Controller
     public function index()
     {
         $bills = Bill::all();
-    
+
         return BillResource::collection($bills);
     }
 
@@ -30,6 +30,8 @@ class BillController extends Controller
             'split' => $request->split,
             'merged' => $request->merged,
             'content' => $request->content,
+            'user_order' => $request->user_order,
+            'table' => $request->table,
             'user_id' => $request->user_id
         ]);
 
@@ -46,7 +48,7 @@ class BillController extends Controller
     public function show($id)
     {
         $bill = Bill::findOrFail($id);
-        
+
         return $bill;
     }
 
@@ -82,7 +84,7 @@ class BillController extends Controller
     public function destroy($id)
     {
         $bill = Bill::findOrFail($id);
-        
+
         $bill->delete();
 
 		return response()->json(['message' => 'Bill deleted successfully!']);

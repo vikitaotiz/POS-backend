@@ -66,6 +66,7 @@ Route::apiResource('/users', 'UserController')->middleware('auth:api');
 Route::apiResource('/tables', 'TableController')->middleware('auth:api');
 
 Route::apiResource('/readies', 'ReadyController')->middleware('auth:api');
+Route::get('/readies/{id}', 'ReadyController@')->middleware('auth:api');
 
 Route::apiResource('/bills', 'BillController')->middleware('auth:api');
 

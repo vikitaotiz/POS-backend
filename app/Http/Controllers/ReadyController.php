@@ -10,8 +10,8 @@ class ReadyController extends Controller
 {
     public function index()
     {
-        $readys = Ready::all();
-    
+        $readys = Ready::latest()->get();
+
         return ReadyResource::collection($readys);
     }
 
@@ -48,7 +48,7 @@ class ReadyController extends Controller
     public function show($id)
     {
         $ready = Ready::findOrFail($id);
-        
+
         return new ReadyResource($ready);
     }
 
@@ -87,7 +87,7 @@ class ReadyController extends Controller
     public function destroy($id)
     {
         $ready = Ready::findOrFail($id);
-        
+
         $ready->delete();
 
 		return response()->json(['message' => 'Ready deleted successfully!']);

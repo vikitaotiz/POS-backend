@@ -10,8 +10,8 @@ class PickController extends Controller
 {
     public function index()
     {
-        $picks = Pick::all();
-    
+        $picks = Pick::latest()->get();
+
         return PickResource::collection($picks);
     }
 
@@ -45,7 +45,7 @@ class PickController extends Controller
     public function show($id)
     {
         $pick = Pick::findOrFail($id);
-        
+
         return $pick;
     }
 
@@ -80,7 +80,7 @@ class PickController extends Controller
     public function destroy($id)
     {
         $pick = Pick::findOrFail($id);
-        
+
         $pick->delete();
 
 		return response()->json(['message' => 'Pick deleted successfully!']);

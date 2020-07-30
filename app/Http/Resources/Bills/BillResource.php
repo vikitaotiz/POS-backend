@@ -16,6 +16,8 @@ class BillResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'user_order' => $this->user_order,
+            'table' => $this->table,
             'amount' => $this->amount,
             'sold' => $this->sold,
             'freaze' => $this->freaze,
