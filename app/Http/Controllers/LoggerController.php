@@ -33,6 +33,7 @@ class LoggerController extends Controller
         ]);
 
         $logger = Logger::create([
+            'user_requesting_void' => $request->user_requesting_void,
             'module' => $request->module,
             'user_id' => $request->user_id,
             'cancel_id' => $request->cancel_id,
@@ -71,6 +72,7 @@ class LoggerController extends Controller
         ]);
 
         $logger->update([
+            'user_requesting_void' => $request->user_requesting_void,
             'module' => $request->module,
             'user_id' => $request->user_id,
             'cancel_id' => $request->cancel_id,

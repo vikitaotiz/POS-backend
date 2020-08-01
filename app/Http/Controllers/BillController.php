@@ -10,7 +10,7 @@ class BillController extends Controller
 {
     public function index()
     {
-        $bills = Bill::all();
+        $bills = Bill::latest()->get();
 
         return BillResource::collection($bills);
     }
