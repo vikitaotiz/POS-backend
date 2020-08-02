@@ -11,7 +11,7 @@ class AdddrinkController extends Controller
      public function index()
     {
         $adddrinks = Adddrink::latest()->get();
-    
+
         return AdddrinkResource::collection($adddrinks);
     }
 
@@ -28,7 +28,8 @@ class AdddrinkController extends Controller
             'table_name' => $request->table_name,
             'table_id' => $request->table_id,
             'amount' => $request->amount,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'user_order' => $request->user_order
         ]);
 
         return new AdddrinkResource($adddrink);
@@ -44,7 +45,7 @@ class AdddrinkController extends Controller
     public function show($id)
     {
         $adddrink = Adddrink::findOrFail($id);
-        
+
         return $adddrink;
     }
 
@@ -63,7 +64,8 @@ class AdddrinkController extends Controller
             'table_name' => $request->table_name,
             'table_id' => $request->table_id,
             'amount' => $request->amount,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'user_order' => $request->user_order
         ]);
 
         return $adddrink;
@@ -78,7 +80,7 @@ class AdddrinkController extends Controller
     public function destroy($id)
     {
         $adddrink = Adddrink::findOrFail($id);
-        
+
         $adddrink->delete();
 
 		return response()->json(['message' => 'Adddrink deleted successfully!']);

@@ -11,7 +11,7 @@ class AddController extends Controller
     public function index()
     {
         $adds = Add::all();
-    
+
         return AddResource::collection($adds);
     }
 
@@ -24,6 +24,7 @@ class AddController extends Controller
     public function store(Request $request)
     {
         $add = Add::create([
+            'user_order' => $request->user_order,
             'content' => $request->content,
             'table_name' => $request->table_name,
             'table_id' => $request->table_id,
@@ -44,7 +45,7 @@ class AddController extends Controller
     public function show($id)
     {
         $add = Add::findOrFail($id);
-        
+
         return $add;
     }
 
@@ -59,6 +60,7 @@ class AddController extends Controller
     public function update(Request $request, $id)
     {
         $add = Add::whereId($id)->update([
+            'user_order' => $request->user_order,
             'content' => $request->content,
             'table_name' => $request->table_name,
             'table_id' => $request->table_id,
@@ -78,7 +80,7 @@ class AddController extends Controller
     public function destroy($id)
     {
         $add = Add::findOrFail($id);
-        
+
         $add->delete();
 
 		return response()->json(['message' => 'Add deleted successfully!']);

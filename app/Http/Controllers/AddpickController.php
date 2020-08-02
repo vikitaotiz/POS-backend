@@ -11,7 +11,7 @@ class AddpickController extends Controller
     public function index()
     {
         $addpicks = Addpick::all();
-    
+
         return AddpickResource::collection($addpicks);
     }
 
@@ -28,7 +28,8 @@ class AddpickController extends Controller
             'table_name' => $request->table_name,
             'table_id' => $request->table_id,
             'amount' => $request->amount,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'user_order' => $request->user_order
         ]);
 
         return new AddpickResource($addpick);
@@ -44,7 +45,7 @@ class AddpickController extends Controller
     public function show($id)
     {
         $addpick = Addpick::findOrFail($id);
-        
+
         return $addpick;
     }
 
@@ -63,7 +64,8 @@ class AddpickController extends Controller
             'table_name' => $request->table_name,
             'table_id' => $request->table_id,
             'amount' => $request->amount,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
+            'user_order' => $request->user_order
         ]);
 
         return $addpick;
@@ -78,7 +80,7 @@ class AddpickController extends Controller
     public function destroy($id)
     {
         $addpick = Addpick::findOrFail($id);
-        
+
         $addpick->delete();
 
 		return response()->json(['message' => 'Addpick deleted successfully!']);

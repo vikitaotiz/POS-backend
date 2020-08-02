@@ -21,6 +21,7 @@ class AddpickResource extends JsonResource
             'content' => $this->content,
             'amount' => $this->amount,
             'user' => $this->user->name,
+            'user_order' => $this->user_order,
             'time' => $this->created_at->format('H:m A, jS D M Y')
         ];
     }

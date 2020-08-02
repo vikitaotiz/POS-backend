@@ -34,9 +34,12 @@ class SaleController extends Controller
         if($duplicate_data->count() > 1){
 
             $sale = Duplicatesale::create([
+                'user_order' => $request->user_order,
                 'content' => $request->content,
                 'payment_mode' => $request->payment_mode,
                 'amount' => $request->amount,
+                'amount_paid' => $request->amount_paid,
+                'balance' => $request->balance,
                 'sold' => $request->sold,
                 'user_id' => auth()->user()->id
             ]);
@@ -44,9 +47,12 @@ class SaleController extends Controller
         } else {
 
             $sale = Sale::create([
+                'user_order' => $request->user_order,
                 'content' => $request->content,
                 'payment_mode' => $request->payment_mode,
                 'amount' => $request->amount,
+                'amount_paid' => $request->amount_paid,
+                'balance' => $request->balance,
                 'sold' => $request->sold,
                 'user_id' => auth()->user()->id
             ]);
@@ -79,9 +85,12 @@ class SaleController extends Controller
     public function update(UpdateSale $request, $id)
     {
         $sale = Sale::whereId($id)->update([
+            'user_order' => $request->user_order,
             'content' => $request->content,
             'payment_mode' => $request->payment_mode,
             'amount' => $request->amount,
+            'amount_paid' => $request->amount_paid,
+            'balance' => $request->balance,
             'sold' => $request->sold,
             'user_id' => auth()->user()->id
         ]);
