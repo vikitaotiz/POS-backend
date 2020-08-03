@@ -20,7 +20,8 @@ class SaleResource extends JsonResource
             'content' => $this->content,
             'payment_mode' => $this->payment_mode,
             'amount' => $this->amount,
-            'user' => $this->user->name
+            'user' => $this->user->name,
+            'user_order' => $this->user_order
         ];
     }
 }
