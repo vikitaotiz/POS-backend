@@ -20,6 +20,13 @@ class SaleController extends Controller
         return SaleResource::collection($sales);
     }
 
+    public function duplicates()
+    {
+        $duplicates = Duplicatesale::latest()->get();
+
+        return SaleResource::collection($duplicates);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

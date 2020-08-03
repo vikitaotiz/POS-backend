@@ -85,6 +85,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Sale::class);
     }
 
+    public function duplicatesales()
+    {
+        return $this->hasMany(Duplicatesale::class);
+    }
+
     public function department()
     {
         return $this->belongsTo(Department::class);
@@ -143,5 +148,10 @@ class User extends Authenticatable implements JWTSubject
     public function bills()
     {
         return $this->hasMany(Addon::class);
+    }
+
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
     }
 }

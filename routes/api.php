@@ -52,6 +52,10 @@ Route::apiResource('/picks', 'PickController')->middleware('auth:api');
 
 Route::apiResource('/sales', 'SaleController')->middleware('auth:api');
 
+Route::get('/duplicates', 'SaleController@duplicates')->middleware('auth:api');
+
+Route::apiResource('/expenses', 'ExpenseController')->middleware('auth:api');
+
 Route::get('/cashSalesIn24hrs', 'SaleController@cashSalesIn24hrs')->middleware('auth:api');
 Route::get('/mpesaSalesIn24hrs', 'SaleController@mpesaSalesIn24hrs')->middleware('auth:api');
 Route::get('/cardSalesIn24hrs', 'SaleController@cardSalesIn24hrs')->middleware('auth:api');
