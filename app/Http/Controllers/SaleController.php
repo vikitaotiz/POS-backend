@@ -187,12 +187,12 @@ class SaleController extends Controller
         $from = Carbon::now()->startOfDay()->toDateTimeString();
         $to = Carbon::now()->endOfDay()->toDateTimeString();
 
-        $sales = Sale::whereBetween('created_at', [$from, $to])->get();
-        $salez = Duplicatesale::whereBetween('created_at', [$from, $to])->get();
+        $sales20 = Sale::whereBetween('created_at', [$from, $to])->get();
+        $salez20 = Duplicatesale::whereBetween('created_at', [$from, $to])->get();
 
-        $merge = $sales->merge($salez);
+        $sales = $sales20->merge($salez20);
 
-        return SaleResource::collection($merge);
+        return SaleResource::collection($sales);
     }
 
     public function salesReport(Request $request){
@@ -210,16 +210,16 @@ class SaleController extends Controller
 
             $sales = $sales11->merge($salez11);
 
-        } elseif($request->user_id){
+        } elseif($request->user_order){
 
             $sales12 = Sale::whereBetween(DB::raw('DATE(created_at)'),
                 array($request->from, $request->to))
-                ->where('user_id', $request->user_id)
+                ->where('user_order', $request->user_order)
                 ->get();
 
             $salez12 = Duplicatesale::whereBetween(DB::raw('DATE(created_at)'),
                 array($request->from, $request->to))
-                ->where('user_id', $request->user_id)
+                ->where('user_order', $request->user_order)
                 ->get();
 
             $sales = $sales12->merge($salez12);
@@ -239,13 +239,13 @@ class SaleController extends Controller
         $sales10 = Sale::whereBetween(DB::raw('DATE(created_at)'),
             array($request->from, $request->to))
             ->where('payment_mode', $request->payment_mode)
-            ->where('user_id', $request->user_id)
+            ->where('user_id', $request->user_order)
             ->get();
 
         $salez10 = Duplicatesale::whereBetween(DB::raw('DATE(created_at)'),
             array($request->from, $request->to))
             ->where('payment_mode', $request->payment_mode)
-            ->where('user_id', $request->user_id)
+            ->where('user_order', $request->user_order)
             ->get();
 
         $sales = $sales10->merge($salez10);

@@ -16,7 +16,7 @@ class ReadyResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'created_at' => $this->created_at->format('H:m A D M Y'),
+            'created_at' => $this->created_at,
             'table_name' => $this->table_name,
             'content' => $this->content,
             'amount' => $this->amount,

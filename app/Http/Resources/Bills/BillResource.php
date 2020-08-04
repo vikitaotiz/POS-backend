@@ -25,7 +25,7 @@ class BillResource extends JsonResource
             'merged' => $this->merged,
             'content' => $this->content,
             'user_id' => $this->user_id,
-            'created_at' => $this->created_at->format('H:m A D M Y')
+            'created_at' => $this->created_at
         ];
     }
 }

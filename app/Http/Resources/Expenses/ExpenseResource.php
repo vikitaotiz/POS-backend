@@ -23,7 +23,7 @@ class ExpenseResource extends JsonResource
             'amount' => $this->amount,
             'provider' => $this->provider,
             'payment_mode' => $this->payment_mode,
-            'created_at' => $this->created_at->format('H:m A D M Y')
+            'created_at' => $this->created_at
         ];
     }
 }

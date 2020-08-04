@@ -21,7 +21,7 @@ class DrinkResource extends JsonResource
             'user' => $this->user->name,
             'amount' => $this->amount,
             'sold' => $this->sold,
-            'created_at' => $this->created_at->format('H:m A, jS D M Y')
+            'created_at' => $this->created_at
         ];
     }
 }

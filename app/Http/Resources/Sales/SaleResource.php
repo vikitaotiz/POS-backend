@@ -16,7 +16,7 @@ class SaleResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'created_at' => $this->created_at->format('H:m A D M Y'),
+            'created_at' => $this->created_at,
             'content' => $this->content,
             'payment_mode' => $this->payment_mode,
             'amount' => $this->amount,

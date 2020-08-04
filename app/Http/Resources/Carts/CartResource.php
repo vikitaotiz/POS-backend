@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Carts;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Cart;
 
 class CartResource extends JsonResource
 {
@@ -21,7 +22,11 @@ class CartResource extends JsonResource
             'user' => $this->user->name,
             'amount' => $this->amount,
             'sold' => $this->sold,
-            'created_at' => $this->created_at->format('H:m A, jS D M Y')
+            // 'created_at' => $this->created_at->format('H:m A, jS D M Y'),
+            // 'created_at' => $this->created_at->format('H:m A, jS D M Y'),
+            'created_at' => $this->created_at
+
+            // Timezone::convertToLocal($thiscreated_at)
         ];
     }
 }
