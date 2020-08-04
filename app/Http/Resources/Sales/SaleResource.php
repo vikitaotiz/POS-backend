@@ -16,12 +16,12 @@ class SaleResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'created_at' => $this->created_at,
             'content' => $this->content,
             'payment_mode' => $this->payment_mode,
             'amount' => $this->amount,
             'user' => $this->user->name,
-            'user_order' => $this->user_order
+            'user_order' => $this->user_order,
+            'created_at' => $this->created_at
         ];
     }
 }

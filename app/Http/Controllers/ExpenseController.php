@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Expense;
 use App\Http\Resources\Expenses\ExpenseResource;
+use Carbon\Carbon;
 
 class ExpenseController extends Controller
 {
@@ -104,5 +105,14 @@ class ExpenseController extends Controller
 
         return response()->json(['message' => 'Expense deleted successfully!']);
 
+    }
+
+    public function expensesIn24Hrs(){
+        $from = Carbon::now()->startOfDay()->toDateTimeString();
+        $to = Carbon::now()->endOfDay()->toDateTimeString();
+
+        $expenses = Expense::whereBetween('created_at', [$from, $to])->get();
+
+        return ExpenseResource::collection($expenses);
     }
 }
