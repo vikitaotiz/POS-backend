@@ -120,9 +120,15 @@ class SaleController extends Controller
         $from = Carbon::now()->startOfDay()->toDateTimeString();
         $to = Carbon::now()->endOfDay()->toDateTimeString();
 
-        $sales = Sale::whereBetween('created_at', [$from, $to])
+        $sales16 = Sale::whereBetween('created_at', [$from, $to])
                     ->where('payment_mode', '=', 'cash')
                     ->get();
+
+        $salez16 = Duplicatesale::whereBetween('created_at', [$from, $to])
+                    ->where('payment_mode', '=', 'cash')
+                    ->get();
+
+        $sales = $sales16->merge($salez16);
 
         return SaleResource::collection($sales);
     }
@@ -131,9 +137,14 @@ class SaleController extends Controller
         $from = Carbon::now()->startOfDay()->toDateTimeString();
         $to = Carbon::now()->endOfDay()->toDateTimeString();
 
-        $sales = Sale::whereBetween('created_at', [$from, $to])
+        $sales17 = Sale::whereBetween('created_at', [$from, $to])
                     ->where('payment_mode', '=', 'mpesa')
                     ->get();
+        $salez17 = Duplicatesale::whereBetween('created_at', [$from, $to])
+                    ->where('payment_mode', '=', 'mpesa')
+                    ->get();
+
+        $sales = $sales17->merge($salez17);
 
         return SaleResource::collection($sales);
     }
@@ -142,9 +153,15 @@ class SaleController extends Controller
         $from = Carbon::now()->startOfDay()->toDateTimeString();
         $to = Carbon::now()->endOfDay()->toDateTimeString();
 
-        $sales = Sale::whereBetween('created_at', [$from, $to])
+        $sales18 = Sale::whereBetween('created_at', [$from, $to])
                     ->where('payment_mode', '=', 'card')
                     ->get();
+
+        $salez18 = Duplicatesale::whereBetween('created_at', [$from, $to])
+                    ->where('payment_mode', '=', 'card')
+                    ->get();
+
+        $sales = $sales18->merge($salez18);
 
         return SaleResource::collection($sales);
     }
@@ -153,9 +170,15 @@ class SaleController extends Controller
         $from = Carbon::now()->startOfDay()->toDateTimeString();
         $to = Carbon::now()->endOfDay()->toDateTimeString();
 
-        $sales = Sale::whereBetween('created_at', [$from, $to])
+        $sales19 = Sale::whereBetween('created_at', [$from, $to])
                     ->where('payment_mode', '=', 'credit')
                     ->get();
+
+        $salez19 = Duplicatesale::whereBetween('created_at', [$from, $to])
+                    ->where('payment_mode', '=', 'credit')
+                    ->get();
+
+        $sales = $sales19->merge($salez19);
 
         return SaleResource::collection($sales);
     }
