@@ -15,16 +15,12 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales = Sale::latest()->get();
+        $sales15 = Sale::latest()->get();
+        $salez15 = Sale::latest()->get();
+
+        $sales = $sales15->merge($salez15);
 
         return SaleResource::collection($sales);
-    }
-
-    public function duplicates()
-    {
-        $duplicates = Duplicatesale::latest()->get();
-
-        return SaleResource::collection($duplicates);
     }
 
     /**
@@ -169,67 +165,100 @@ class SaleController extends Controller
         $to = Carbon::now()->endOfDay()->toDateTimeString();
 
         $sales = Sale::whereBetween('created_at', [$from, $to])->get();
+        $salez = Duplicatesale::whereBetween('created_at', [$from, $to])->get();
 
-        return SaleResource::collection($sales);
+        $merge = $sales->merge($salez);
+
+        return SaleResource::collection($merge);
     }
 
     public function salesReport(Request $request){
 
         if($request->payment_mode){
-
-            $sales = Sale::whereBetween(DB::raw('DATE(created_at)'),
+            $sales11 = Sale::whereBetween(DB::raw('DATE(created_at)'),
                 array($request->from, $request->to))
                 ->where('payment_mode', $request->payment_mode)
                 ->get();
 
+            $salez11 = Duplicatesale::whereBetween(DB::raw('DATE(created_at)'),
+                array($request->from, $request->to))
+                ->where('payment_mode', $request->payment_mode)
+                ->get();
+
+            $sales = $sales11->merge($salez11);
+
         } elseif($request->user_id){
 
-            $sales = Sale::whereBetween(DB::raw('DATE(created_at)'),
+            $sales12 = Sale::whereBetween(DB::raw('DATE(created_at)'),
                 array($request->from, $request->to))
                 ->where('user_id', $request->user_id)
                 ->get();
 
+            $salez12 = Duplicatesale::whereBetween(DB::raw('DATE(created_at)'),
+                array($request->from, $request->to))
+                ->where('user_id', $request->user_id)
+                ->get();
+
+            $sales = $sales12->merge($salez12);
+
         } else {
-            $sales = Sale::whereBetween(DB::raw('DATE(created_at)'),
+            $sales13 = Sale::whereBetween(DB::raw('DATE(created_at)'),
                     array($request->from, $request->to))->get();
+            $salez13 = Duplicatesale::whereBetween(DB::raw('DATE(created_at)'),
+                    array($request->from, $request->to))->get();
+            $sales = $sales13->merge($salez13);
         }
 
         return SaleResource::collection($sales);
     }
 
     public function salesReportAll(Request $request){
-        $sales = Sale::whereBetween(DB::raw('DATE(created_at)'),
+        $sales10 = Sale::whereBetween(DB::raw('DATE(created_at)'),
             array($request->from, $request->to))
             ->where('payment_mode', $request->payment_mode)
             ->where('user_id', $request->user_id)
             ->get();
+
+        $salez10 = Duplicatesale::whereBetween(DB::raw('DATE(created_at)'),
+            array($request->from, $request->to))
+            ->where('payment_mode', $request->payment_mode)
+            ->where('user_id', $request->user_id)
+            ->get();
+
+        $sales = $sales10->merge($salez10);
 
         return SaleResource::collection($sales);
     }
 
     public function salesLastSevenDays(){
 
+        $sales1 = Sale::whereDate( 'created_at', Carbon::now()->toDateString())->get();
+        $salez1 = Duplicatesale::whereDate( 'created_at', Carbon::now()->toDateString())->get();
+        $today_sales = $sales1->merge($salez1);
 
+        $sales2 = Sale::whereDate( 'created_at', Carbon::now()->subDays(1)->toDateString())->get();
+        $salez2 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(1)->toDateString())->get();
+        $yesterday_sales = $sales2->merge($salez2);
 
-        $today_sales = Sale::whereDate( 'created_at', Carbon::now()->toDateString())->get();
+        $sales3 = Sale::whereDate( 'created_at', Carbon::now()->subDays(2)->toDateString())->get();
+        $salez3 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(2)->toDateString())->get();
+        $twoDaysAgo_sales = $sales3->merge($salez3);
 
-        $yesterday_sales = Sale::whereDate( 'created_at', Carbon::now()->subDays(1)->toDateString())
-           ->get();
+        $sales4 = Sale::whereDate( 'created_at', Carbon::now()->subDays(3)->toDateString())->get();
+        $salez4 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(3)->toDateString())->get();
+        $threeDaysAgo_sales = $sales4->merge($salez4);
 
-        $twoDaysAgo_sales = Sale::whereDate( 'created_at', Carbon::now()->subDays(2)->toDateString())
-           ->get();
+        $sales5 = Sale::whereDate( 'created_at', Carbon::now()->subDays(4)->toDateString())->get();
+        $salez5 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(4)->toDateString())->get();
+        $fourDaysAgo_sales = $sales5->merge($salez5);
 
-        $threeDaysAgo_sales = Sale::whereDate( 'created_at', Carbon::now()->subDays(3)->toDateString())
-           ->get();
+        $sales6 = Sale::whereDate( 'created_at', Carbon::now()->subDays(5)->toDateString())->get();
+        $salez6 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(5)->toDateString())->get();
+        $fiveDaysAgo_sales = $sales6->merge($salez6);
 
-        $fourDaysAgo_sales = Sale::whereDate( 'created_at', Carbon::now()->subDays(4)->toDateString())
-           ->get();
-
-        $fiveDaysAgo_sales = Sale::whereDate( 'created_at', Carbon::now()->subDays(5)->toDateString())
-           ->get();
-
-        $sixDaysAgo_sales = Sale::whereDate( 'created_at', Carbon::now()->subDays(6)->toDateString())
-           ->get();
+        $sales7 = Sale::whereDate( 'created_at', Carbon::now()->subDays(6)->toDateString())->get();
+        $salez7 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(6)->toDateString())->get();
+        $sixDaysAgo_sales = $sales7->merge($salez7);
 
         $sales = array(
             $today_sales->count(),
