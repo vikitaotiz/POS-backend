@@ -51,6 +51,7 @@ Route::apiResource('/drinks', 'DrinkController')->middleware('auth:api');
 Route::apiResource('/picks', 'PickController')->middleware('auth:api');
 
 Route::apiResource('/sales', 'SaleController')->middleware('auth:api');
+Route::post('/clear_credit', 'SaleController@clear_credit')->middleware('auth:api');
 
 Route::apiResource('/expenses', 'ExpenseController')->middleware('auth:api');
 Route::get('/expenses_in_24hrs', 'ExpenseController@expensesIn24Hrs')->middleware('auth:api');

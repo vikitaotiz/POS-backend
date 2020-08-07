@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Sale;
 use App\Duplicatesale;
 use App\Http\Resources\Sales\SaleResource;
@@ -32,9 +33,13 @@ class SaleController extends Controller
     // public function store(CreateSale $request)
     public function store(CreateSale $request)
     {
-        $duplicate_data = DB::table('sales')->where('amount', $request->amount)->get();
+        $duplicate_data = Sale::where('content', $request->content)
+                ->where('payment_mode', $request->payment_mode)
+                ->where('amount', $request->amount)
+                ->where('user_id', auth()->user()->id)
+                ->first();
 
-        if($duplicate_data->count() > 1){
+        if($duplicate_data){
 
             $sale = Duplicatesale::create([
                 'user_order' => $request->user_order,
@@ -99,6 +104,50 @@ class SaleController extends Controller
         ]);
 
         return $sale;
+    }
+
+    public function clear_credit(Request $request){
+
+        $user = User::where('name', $request->user)->first();
+
+        $sales30 = Sale::where('content', $request->content)
+                    ->where('payment_mode', 'credit')
+                    ->where('amount', $request->amount)
+                    ->where('user_id', $user->id)
+                    ->first();
+
+        $salez30 = Duplicatesale::where('content', $request->content)
+                    ->where('payment_mode', 'credit')
+                    ->where('amount', $request->amount)
+                    ->where('user_id', $user->id)
+                    ->first();
+
+        if($sales30){
+
+            $sale = Sale::whereId($sales30->id)->update([
+                'user_order' => $request->user_order,
+                'content' => $request->content,
+                'payment_mode' => $request->payment_mode,
+                'amount' => $request->amount,
+                'sold' => 1,
+                'user_id' => auth()->user()->id
+            ]);
+
+            return $sale;
+        } else {
+
+            $sale = Duplicatesale::whereId($salez30->id)->update([
+                'user_order' => $request->user_order,
+                'content' => $request->content,
+                'payment_mode' => $request->payment_mode,
+                'amount' => $request->amount,
+                'sold' => 1,
+                'user_id' => auth()->user()->id
+            ]);
+
+            return $sale;
+        }
+
     }
 
     /**
