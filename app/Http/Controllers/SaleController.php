@@ -16,9 +16,9 @@ class SaleController extends Controller
     public function index()
     {
         $sales15 = Sale::latest()->get();
-        $salez15 = Sale::latest()->get();
+        $salez15 = Duplicatesale::latest()->get();
 
-        $sales = $sales15->merge($salez15);
+        $sales = $sales15->concat($salez15);
 
         return SaleResource::collection($sales);
     }
@@ -128,7 +128,7 @@ class SaleController extends Controller
                     ->where('payment_mode', '=', 'cash')
                     ->get();
 
-        $sales = $sales16->merge($salez16);
+        $sales = $sales16->concat($salez16);
 
         return SaleResource::collection($sales);
     }
@@ -144,7 +144,7 @@ class SaleController extends Controller
                     ->where('payment_mode', '=', 'mpesa')
                     ->get();
 
-        $sales = $sales17->merge($salez17);
+        $sales = $sales17->concat($salez17);
 
         return SaleResource::collection($sales);
     }
@@ -161,7 +161,7 @@ class SaleController extends Controller
                     ->where('payment_mode', '=', 'card')
                     ->get();
 
-        $sales = $sales18->merge($salez18);
+        $sales = $sales18->concat($salez18);
 
         return SaleResource::collection($sales);
     }
@@ -178,7 +178,7 @@ class SaleController extends Controller
                     ->where('payment_mode', '=', 'credit')
                     ->get();
 
-        $sales = $sales19->merge($salez19);
+        $sales = $sales19->concat($salez19);
 
         return SaleResource::collection($sales);
     }
@@ -190,7 +190,7 @@ class SaleController extends Controller
         $sales20 = Sale::whereBetween('created_at', [$from, $to])->get();
         $salez20 = Duplicatesale::whereBetween('created_at', [$from, $to])->get();
 
-        $sales = $sales20->merge($salez20);
+        $sales = $sales20->concat($salez20);
 
         return SaleResource::collection($sales);
     }
@@ -208,7 +208,7 @@ class SaleController extends Controller
                 ->where('payment_mode', $request->payment_mode)
                 ->get();
 
-            $sales = $sales11->merge($salez11);
+            $sales = $sales11->concat($salez11);
 
         } elseif($request->user_order){
 
@@ -222,14 +222,14 @@ class SaleController extends Controller
                 ->where('user_order', $request->user_order)
                 ->get();
 
-            $sales = $sales12->merge($salez12);
+            $sales = $sales12->concat($salez12);
 
         } else {
             $sales13 = Sale::whereBetween(DB::raw('DATE(created_at)'),
                     array($request->from, $request->to))->get();
             $salez13 = Duplicatesale::whereBetween(DB::raw('DATE(created_at)'),
                     array($request->from, $request->to))->get();
-            $sales = $sales13->merge($salez13);
+            $sales = $sales13->concat($salez13);
         }
 
         return SaleResource::collection($sales);
@@ -248,7 +248,7 @@ class SaleController extends Controller
             ->where('user_order', $request->user_order)
             ->get();
 
-        $sales = $sales10->merge($salez10);
+        $sales = $sales10->concat($salez10);
 
         return SaleResource::collection($sales);
     }
@@ -257,31 +257,31 @@ class SaleController extends Controller
 
         $sales1 = Sale::whereDate( 'created_at', Carbon::now()->toDateString())->get();
         $salez1 = Duplicatesale::whereDate( 'created_at', Carbon::now()->toDateString())->get();
-        $today_sales = $sales1->merge($salez1);
+        $today_sales = $sales1->concat($salez1);
 
         $sales2 = Sale::whereDate( 'created_at', Carbon::now()->subDays(1)->toDateString())->get();
         $salez2 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(1)->toDateString())->get();
-        $yesterday_sales = $sales2->merge($salez2);
+        $yesterday_sales = $sales2->concat($salez2);
 
         $sales3 = Sale::whereDate( 'created_at', Carbon::now()->subDays(2)->toDateString())->get();
         $salez3 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(2)->toDateString())->get();
-        $twoDaysAgo_sales = $sales3->merge($salez3);
+        $twoDaysAgo_sales = $sales3->concat($salez3);
 
         $sales4 = Sale::whereDate( 'created_at', Carbon::now()->subDays(3)->toDateString())->get();
         $salez4 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(3)->toDateString())->get();
-        $threeDaysAgo_sales = $sales4->merge($salez4);
+        $threeDaysAgo_sales = $sales4->concat($salez4);
 
         $sales5 = Sale::whereDate( 'created_at', Carbon::now()->subDays(4)->toDateString())->get();
         $salez5 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(4)->toDateString())->get();
-        $fourDaysAgo_sales = $sales5->merge($salez5);
+        $fourDaysAgo_sales = $sales5->concat($salez5);
 
         $sales6 = Sale::whereDate( 'created_at', Carbon::now()->subDays(5)->toDateString())->get();
         $salez6 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(5)->toDateString())->get();
-        $fiveDaysAgo_sales = $sales6->merge($salez6);
+        $fiveDaysAgo_sales = $sales6->concat($salez6);
 
         $sales7 = Sale::whereDate( 'created_at', Carbon::now()->subDays(6)->toDateString())->get();
         $salez7 = Duplicatesale::whereDate( 'created_at', Carbon::now()->subDays(6)->toDateString())->get();
-        $sixDaysAgo_sales = $sales7->merge($salez7);
+        $sixDaysAgo_sales = $sales7->concat($salez7);
 
         $sales = array(
             $today_sales->count(),
