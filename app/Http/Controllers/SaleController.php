@@ -48,6 +48,7 @@ class SaleController extends Controller
                 'amount' => $request->amount,
                 'amount_paid' => $request->amount_paid,
                 'balance' => $request->balance,
+                'creditor_name' => $request->creditor_name,
                 'sold' => $request->sold,
                 'user_id' => auth()->user()->id
             ]);
@@ -61,6 +62,7 @@ class SaleController extends Controller
                 'amount' => $request->amount,
                 'amount_paid' => $request->amount_paid,
                 'balance' => $request->balance,
+                'creditor_name' => $request->creditor_name,
                 'sold' => $request->sold,
                 'user_id' => auth()->user()->id
             ]);

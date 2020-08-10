@@ -21,6 +21,7 @@ class SaleResource extends JsonResource
             'amount' => $this->amount,
             'user' => $this->user->name,
             'user_order' => $this->user_order,
+            'creditor_name' => $this->creditor_name,
             'created_at' => $this->created_at
         ];
     }
