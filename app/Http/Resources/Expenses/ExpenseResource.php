@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Expenses;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Expense;
 
 class ExpenseResource extends JsonResource
 {
@@ -21,8 +22,12 @@ class ExpenseResource extends JsonResource
             'content' => $this->content,
             'quantity' => $this->quantity,
             'amount' => $this->amount,
+
             'provider' => $this->provider,
-            'payment_mode' => $this->payment_mode,
+            'measurement_unit' => $this->measurementunit,
+            'payment_mode' => $this->paymentmode,
+            'expense_cat' => $this->expensecat,
+
             'created_at' => $this->created_at
         ];
     }

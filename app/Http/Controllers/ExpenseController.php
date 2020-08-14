@@ -41,8 +41,10 @@ class ExpenseController extends Controller
             'content' => $request->content,
             'quantity' => $request->quantity,
             'amount' => $request->amount,
-            'provider' => $request->provider,
-            'payment_mode' => $request->payment_mode
+            'provider_id' => $request->provider_id,
+            'paymentmode_id' => $request->paymentmode_id,
+            'measurementunit_id' => $request->measurementunit_id,
+            'expensecat_id' => $request->expensecat_id
         ]);
 
         return new ExpenseResource($expense);
@@ -72,20 +74,16 @@ class ExpenseController extends Controller
     {
         $expense = Expense::find($id);
 
-        $this->validate($request, [
-            'user_requesting_expense' => 'required',
-            'content' => 'required',
-            'amount' => 'required'
-        ]);
-
         $expense->update([
             'user_requesting_expense' => $request->user_requesting_expense,
             'user_id' => $request->user_id,
             'content' => $request->content,
             'quantity' => $request->quantity,
             'amount' => $request->amount,
-            'provider' => $request->provider,
-            'payment_mode' => $request->payment_mode
+            'provider_id' => $request->provider_id,
+            'paymentmode_id' => $request->paymentmode_id,
+            'measurementunit_id' => $request->measurementunit_id,
+            'expensecat_id' => $request->expensecat_id
         ]);
 
         return new ExpenseResource($expense);

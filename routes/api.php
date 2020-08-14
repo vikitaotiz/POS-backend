@@ -18,9 +18,7 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/register', 'AuthController@register');
     Route::post('/login', 'AuthController@login');
     Route::post('/logout', 'AuthController@logout');
-
     Route::post('/pin_login', 'AuthController@pin_login');
-
 });
 
 Route::get('/user', 'AuthController@user')->middleware('auth:api');
@@ -54,6 +52,9 @@ Route::apiResource('/sales', 'SaleController')->middleware('auth:api');
 Route::post('/clear_credit', 'SaleController@clear_credit')->middleware('auth:api');
 
 Route::apiResource('/expenses', 'ExpenseController')->middleware('auth:api');
+
+Route::apiResource('/expensecats', 'ExpensecatController')->middleware('auth:api');
+
 Route::get('/expenses_in_24hrs', 'ExpenseController@expensesIn24Hrs')->middleware('auth:api');
 
 Route::get('/cashSalesIn24hrs', 'SaleController@cashSalesIn24hrs')->middleware('auth:api');
@@ -72,6 +73,9 @@ Route::apiResource('/tables', 'TableController')->middleware('auth:api');
 Route::apiResource('/readies', 'ReadyController')->middleware('auth:api');
 
 Route::apiResource('/bills', 'BillController')->middleware('auth:api');
+Route::apiResource('/measurementunits', 'MeasurementunitController')->middleware('auth:api');
+Route::apiResource('/paymentmodes', 'PaymentmodeController')->middleware('auth:api');
+Route::apiResource('/providers', 'ProviderController')->middleware('auth:api');
 
 Route::apiResource('/adds', 'AddController')->middleware('auth:api');
 Route::apiResource('/adddrinks', 'AdddrinkController')->middleware('auth:api');

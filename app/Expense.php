@@ -12,4 +12,24 @@ class Expense extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function expensecat()
+    {
+        return $this->belongsTo(Expensecat::class);
+    }
+
+    public function measurementunit()
+    {
+        return $this->belongsTo(Measurementunit::class);
+    }
+
+    public function paymentmode()
+    {
+        return $this->belongsTo(Paymentmode::class);
+    }
+
+    public function provider()
+    {
+        return $this->belongsTo(Provider::class);
+    }
 }
