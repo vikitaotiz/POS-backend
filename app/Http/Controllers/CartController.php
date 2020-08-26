@@ -33,7 +33,6 @@ class CartController extends Controller
         ]);
 
         return new CartResource($cart);
-
     }
 
     /**

@@ -7,6 +7,7 @@ use App\User;
 use App\Http\Resources\Users\UsersResource;
 use App\Http\Resources\Users\UserResource;
 use App\Http\Requests\RegisterRequest;
+use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
@@ -18,9 +19,17 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::latest()->get();
+        // Redis::flushall();
+        // if(Redis::exists('users')){
+            // return json_decode(Redis::get('users'));
+        // }
+        // else {
+            $users = User::latest()->get();
+            // Redis::set('users', $users);
+            // return $users;
+            return UsersResource::collection($users);
+        // }
 
-        return UsersResource::collection($users);
     }
 
     /**

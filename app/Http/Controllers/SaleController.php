@@ -21,7 +21,7 @@ class SaleController extends Controller
 
         $sales = $sales15->concat($salez15);
 
-        return SaleResource::collection($sales);
+        return SaleResource::collection($sales15);
     }
 
     /**

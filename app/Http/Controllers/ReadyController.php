@@ -23,7 +23,8 @@ class ReadyController extends Controller
      */
     public function store(Request $request)
     {
-        $ready = Ready::create([
+        // $ready = Ready::create([
+        $ready = Ready::firstOrCreate([
             'content' => $request->content,
             'table_name' => $request->table_name,
             'amount' => $request->amount,

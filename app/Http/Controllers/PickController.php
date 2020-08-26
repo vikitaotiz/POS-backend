@@ -23,7 +23,8 @@ class PickController extends Controller
      */
     public function store(Request $request)
     {
-        $pick = Pick::create([
+        // $pick = Pick::create([
+        $pick = Pick::firstOrCreate([
             'content' => $request->content,
             'table_name' => $request->table_name,
             'amount' => $request->amount,
