@@ -23,7 +23,8 @@ class AdddrinkController extends Controller
      */
     public function store(Request $request)
     {
-        $adddrink = Adddrink::create([
+        // $adddrink = Adddrink::create([
+        $adddrink = Adddrink::firstOrCreate([
             'content' => $request->content,
             'table_name' => $request->table_name,
             'table_id' => $request->table_id,

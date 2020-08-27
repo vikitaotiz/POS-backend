@@ -23,7 +23,8 @@ class AddpickController extends Controller
      */
     public function store(Request $request)
     {
-        $addpick = Addpick::create([
+        // $addpick = Addpick::create([
+        $addpick = Addpick::firstOrCreate([
             'content' => $request->content,
             'table_name' => $request->table_name,
             'table_id' => $request->table_id,
