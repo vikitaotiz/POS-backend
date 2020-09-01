@@ -15,7 +15,7 @@ class TableController extends Controller
      */
     public function index()
     {
-        $tables = Table::latest()->get();
+        $tables = Table::all();
 
         return TableResource::collection($tables);
     }
@@ -50,7 +50,7 @@ class TableController extends Controller
     {
         $table = Table::find($id);
 
-        return $table;
+        return new TableResource($table);
     }
 
     /**
