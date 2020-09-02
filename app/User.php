@@ -174,4 +174,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Provider::class);
     }
+
+    public function shifts()
+    {
+        return $this->hasMany(Shift::class);
+    }
 }

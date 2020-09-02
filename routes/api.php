@@ -68,6 +68,7 @@ Route::get('/sales_last_seven_days', 'SaleController@salesLastSevenDays')->middl
 Route::apiResource('/users', 'UserController')->middleware('auth:api');
 
 Route::apiResource('/tables', 'TableController')->middleware('auth:api');
+Route::apiResource('/shifts', 'ShiftController')->middleware('auth:api');
 
 Route::apiResource('/readies', 'ReadyController')->middleware('auth:api');
 

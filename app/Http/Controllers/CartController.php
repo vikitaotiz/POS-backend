@@ -25,7 +25,7 @@ class CartController extends Controller
      */
     public function store(CreateCart $request)
     {
-        $cart = Cart::create([
+        $cart = Cart::firstOrCreate([
             'content' => $request->content,
             'table_name' => $request->table_name,
             'amount' => $request->amount,
