@@ -23,6 +23,7 @@ class CreateShiftsTable extends Migration
             $table->integer('credit');
             $table->integer('cash_at_hand');
             $table->integer('cash_in_drawer');
+            $table->integer('cash_difference');
             $table->integer('user_id');
             $table->timestamps();
         });

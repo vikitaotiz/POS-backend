@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Shift;
 use App\Http\Resources\Shifts\ShiftResource;
+use Carbon\Carbon;
 
 
 class ShiftController extends Controller
@@ -42,6 +43,7 @@ class ShiftController extends Controller
             'credit' => $request->credit,
             'cash_at_hand' => $request->cash_at_hand,
             'cash_in_drawer' => $request->cash_in_drawer,
+            'cash_difference' => $request->cash_difference,
             'user_id' => $request->user_id
         ]);
 
@@ -85,6 +87,7 @@ class ShiftController extends Controller
             'credit' => $request->credit,
             'cash_at_hand' => $request->cash_at_hand,
             'cash_in_drawer' => $request->cash_in_drawer,
+            'cash_difference' => $request->cash_difference,
             'user_id' => $request->user_id
         ]);
 
@@ -105,5 +108,11 @@ class ShiftController extends Controller
 
         return response()->json(['message' => 'Shift deleted successfully!']);
 
+    }
+
+    public function yesterday_float(){
+        $data = Shift::whereDate( 'created_at', Carbon::now()->subDays(1)->toDateString())->get();
+
+        return ShiftResource::collection($data);
     }
 }

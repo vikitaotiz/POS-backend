@@ -15,7 +15,7 @@ class TableController extends Controller
      */
     public function index()
     {
-        $tables = Table::all();
+        $tables = Table::latest()->get();
 
         return TableResource::collection($tables);
     }
