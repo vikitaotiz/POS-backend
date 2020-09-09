@@ -10,7 +10,7 @@ class AddController extends Controller
 {
     public function index()
     {
-        $adds = Add::all();
+        $adds = Add::latest()->get();
 
         return AddResource::collection($adds);
     }
@@ -23,7 +23,7 @@ class AddController extends Controller
      */
     public function store(Request $request)
     {
-        $add = Add::create([
+        $add = Add::firstOrCreate([
             'user_order' => $request->user_order,
             'content' => $request->content,
             'table_name' => $request->table_name,

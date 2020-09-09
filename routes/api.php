@@ -75,6 +75,16 @@ Route::get('/yesterday_float', 'ShiftController@yesterday_float')->middleware('a
 Route::apiResource('/readies', 'ReadyController')->middleware('auth:api');
 
 Route::apiResource('/bills', 'BillController')->middleware('auth:api');
+
+Route::apiResource('/timers', 'TimerController')->middleware('auth:api');
+Route::get('/timers_kitchen', 'TimerController@timers_kitchen')->middleware('auth:api');
+Route::get('/timers_barista', 'TimerController@timers_barista')->middleware('auth:api');
+Route::get('/timers_pick', 'TimerController@timers_pick')->middleware('auth:api');
+
+Route::get('/timers_kitchen_all', 'TimerController@timers_kitchen_all')->middleware('auth:api');
+Route::get('/timers_barista_all', 'TimerController@timers_barista_all')->middleware('auth:api');
+Route::get('/timers_pick_all', 'TimerController@timers_pick_all')->middleware('auth:api');
+
 Route::apiResource('/measurementunits', 'MeasurementunitController')->middleware('auth:api');
 Route::apiResource('/paymentmodes', 'PaymentmodeController')->middleware('auth:api');
 Route::apiResource('/providers', 'ProviderController')->middleware('auth:api');
