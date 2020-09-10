@@ -23,7 +23,7 @@ class TimerResource extends JsonResource
             'content' => $this->content,
             'amount' => $this->amount,
             'user' => $this->user->name,
-            'created_at' => $this->created_at->format('H:m A, jS D M Y')
+            'created_at' => $this->created_at
         ];
     }
 }
