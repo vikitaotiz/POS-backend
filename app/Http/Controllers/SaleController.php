@@ -16,8 +16,8 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales15 = Sale::latest()->get();
-        $salez15 = Duplicatesale::latest()->get();
+        $sales15 = Sale::latest()->paginate(500);
+        $salez15 = Duplicatesale::latest()->paginate(500);
 
         $sales = $sales15->concat($salez15);
 
