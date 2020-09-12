@@ -24,36 +24,25 @@ Route::get('/user', 'AuthController@user')->middleware('auth:api');
 
 Route::apiResource('/departments', 'DepartmentController')->middleware('auth:api');
 Route::apiResource('/roles', 'RoleController')->middleware('auth:api');
-
-
 Route::apiResource('/cancels', 'CancelController')->middleware('auth:api');
 
 Route::get('/loggedinusers', 'LoggedInUserController@index');
 Route::post('/loggedinusers', 'LoggedInUserController@store')->middleware('auth:api');
-
 Route::delete('/loggedinusers/{id}', 'LoggedInUserController@destroy')->middleware('auth:api');
 
 Route::apiResource('/loggers', 'LoggerController')->middleware('auth:api');
-
 Route::apiResource('/categories', 'CategoryController')->middleware('auth:api');
-
 Route::apiResource('/products', 'ProductController')->middleware('auth:api');
-
 Route::apiResource('/addons', 'AddonController')->middleware('auth:api');
-
 Route::apiResource('/carts', 'CartController')->middleware('auth:api');
-
 Route::apiResource('/drinks', 'DrinkController')->middleware('auth:api');
-
 Route::apiResource('/picks', 'PickController')->middleware('auth:api');
 
 Route::apiResource('/sales', 'SaleController')->middleware('auth:api');
 Route::post('/clear_credit', 'SaleController@clear_credit')->middleware('auth:api');
 
 Route::apiResource('/expenses', 'ExpenseController')->middleware('auth:api');
-
 Route::apiResource('/expensecats', 'ExpensecatController')->middleware('auth:api');
-
 Route::get('/expenses_in_24hrs', 'ExpenseController@expensesIn24Hrs')->middleware('auth:api');
 
 Route::get('/cashSalesIn24hrs', 'SaleController@cashSalesIn24hrs')->middleware('auth:api');
@@ -72,8 +61,8 @@ Route::apiResource('/tables', 'TableController')->middleware('auth:api');
 Route::apiResource('/shifts', 'ShiftController')->middleware('auth:api');
 Route::get('/yesterday_float', 'ShiftController@yesterday_float')->middleware('auth:api');
 
-
 Route::apiResource('/readies', 'ReadyController')->middleware('auth:api');
+Route::apiResource('/target_sales', 'TargetSaleController')->middleware('auth:api');
 
 Route::apiResource('/bills', 'BillController')->middleware('auth:api');
 

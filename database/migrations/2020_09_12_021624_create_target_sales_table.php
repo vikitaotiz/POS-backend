@@ -15,6 +15,8 @@ class CreateTargetSalesTable extends Migration
     {
         Schema::create('target_sales', function (Blueprint $table) {
             $table->id();
+            $table->integer('daily_target_sale');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
