@@ -51,19 +51,22 @@ class TimerController extends Controller
 
     public function timers_kitchen_all()
     {
-        $timers = Timer::where('module', 'Kitchen')->get();
+        $timers = Timer::where('module', 'Kitchen')
+                        ->orderBy('id','DESC')->get();
         return TimerResource::collection($timers);
     }
 
     public function timers_barista_all()
     {
-        $timers = Timer::where('module', 'Barista')->get();
+        $timers = Timer::where('module', 'Barista')
+                        ->orderBy('id','DESC')->get();
         return TimerResource::collection($timers);
     }
 
     public function timers_pick_all()
     {
-        $timers = Timer::where('module', 'Pick')->get();
+        $timers = Timer::where('module', 'Pick')
+                        ->orderBy('id','DESC')->get();
         return TimerResource::collection($timers);
     }
 
