@@ -16,8 +16,11 @@ class SaleController extends Controller
 {
     public function index()
     {
-        $sales15 = Sale::latest()->paginate(500);
-        $salez15 = Duplicatesale::latest()->paginate(500);
+        $start = Carbon::now()->startOfMonth();
+        $end = Carbon::now();
+
+        $sales15 = Sale::whereBetween('created_at', [$start, $end])->get();
+        $salez15 = Duplicatesale::whereBetween('created_at', [$start, $end])->get();
 
         $sales = $sales15->concat($salez15);
 

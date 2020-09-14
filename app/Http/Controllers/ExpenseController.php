@@ -16,7 +16,10 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::latest()->get();
+        // $expenses = Expense::latest()->get();
+        $start = Carbon::now()->startOfMonth();
+        $end = Carbon::now();
+        $expenses = Expense::whereBetween('created_at', [$start, $end])->get();
 
         return ExpenseResource::collection($expenses);
     }

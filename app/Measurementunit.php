@@ -17,4 +17,9 @@ class Measurementunit extends Model
     {
         return $this->hasMany(Expense::class);
     }
+
+    public function procurements()
+    {
+        return $this->hasMany(Procurement::class);
+    }
 }
