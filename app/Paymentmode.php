@@ -17,4 +17,9 @@ class Paymentmode extends Model
     {
         return $this->hasMany(Expense::class);
     }
+
+    public function confirmedrequests()
+    {
+        return $this->hasMany(Confirmedrequest::class);
+    }
 }
