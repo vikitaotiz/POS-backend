@@ -15,9 +15,7 @@ class CreateUserrequestsTable extends Migration
     {
         Schema::create('userrequests', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('measurementunit');
-            $table->integer('qty');
+            $table->longText('content');
             $table->integer('user_id');
             $table->timestamps();
         });

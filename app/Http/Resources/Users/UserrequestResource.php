@@ -16,10 +16,8 @@ class UserrequestResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'qty' => $this->qty,
+            'content' => $this->content,
             'user' => $this->user->name,
-            'measurementunit' => $this->measurementunit,
             'created_at' => $this->created_at->format('H:m A, jS D M Y')
         ];
     }

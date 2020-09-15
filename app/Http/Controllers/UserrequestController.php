@@ -29,13 +29,11 @@ class UserrequestController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'content' => 'required'
         ]);
 
         $userrequest = Userrequest::create([
-            'name' => $request->name,
-            'qty' => $request->qty,
-            'measurementunit' => $request->measurementunit,
+            'content' => $request->content,
             'user_id' => $request->user_id
         ]);
 
@@ -67,13 +65,11 @@ class UserrequestController extends Controller
         $userrequest = Userrequest::find($id);
 
         $this->validate($request, [
-            'name' => 'required'
+            'content' => 'required'
         ]);
 
         $userrequest->update([
-            'name' => $request->name,
-            'qty' => $request->qty,
-            'measurementunit' => $request->measurementunit,
+            'content' => $request->content,
             'user_id' => $request->user_id
         ]);
 
