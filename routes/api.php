@@ -67,6 +67,8 @@ Route::apiResource('/target_sales', 'TargetSaleController')->middleware('auth:ap
 
 Route::apiResource('/bills', 'BillController')->middleware('auth:api');
 
+Route::apiResource('/userrequests', 'UserrequestController')->middleware('auth:api');
+
 Route::apiResource('/timers', 'TimerController')->middleware('auth:api');
 Route::get('/timers_kitchen', 'TimerController@timers_kitchen')->middleware('auth:api');
 Route::get('/timers_barista', 'TimerController@timers_barista')->middleware('auth:api');
