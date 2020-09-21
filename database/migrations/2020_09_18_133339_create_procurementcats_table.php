@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProcurementsTable extends Migration
+class CreateProcurementcatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateProcurementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('procurements', function (Blueprint $table) {
+        Schema::create('procurementcats', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('measurementunit_id');
-            $table->integer('procurementcat_id');
             $table->integer('user_id');
             $table->timestamps();
         });
@@ -30,6 +28,6 @@ class CreateProcurementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('procurements');
+        Schema::dropIfExists('procurementcats');
     }
 }

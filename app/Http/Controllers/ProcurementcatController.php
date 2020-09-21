@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Procurement;
-use App\Http\Resources\Procurements\ProcurementResource;
+use App\Procurementcat;
+use App\Http\Resources\Procurements\ProcurementcatResource;
 
-class ProcurementController extends Controller
+class ProcurementcatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class ProcurementController extends Controller
      */
     public function index()
     {
-        $procurements = Procurement::latest()->get();
+        $procurementcats = Procurementcat::latest()->get();
 
-        return ProcurementResource::collection($procurements);
+        return ProcurementcatResource::collection($procurementcats);
     }
 
     /**
@@ -32,67 +32,63 @@ class ProcurementController extends Controller
             'name' => 'required'
         ]);
 
-        $procurement = Procurement::create([
+        $procurementcat = Procurementcat::create([
             'name' => $request->name,
-            'measurementunit_id' => $request->measurementunit_id,
-            'procurementcat_id' => $request->procurementcat_id,
             'user_id' => $request->user_id
         ]);
 
-        return new ProcurementResource($procurement);
+        return new ProcurementcatResource($procurementcat);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Procurement  $Procurement
+     * @param  \App\Procurementcat  $Procurementcat
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $procurement = Procurement::find($id);
+        $procurementcat = Procurementcat::find($id);
 
-        return $procurement;
+        return new ProcurementcatResource($procurementcat);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Procurement  $Procurement
+     * @param  \App\Procurementcat  $Procurementcat
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $procurement = Procurement::find($id);
+        $procurementcat = Procurementcat::find($id);
 
         $this->validate($request, [
             'name' => 'required'
         ]);
 
-        $procurement->update([
+        $procurementcat->update([
             'name' => $request->name,
-            'measurementunit_id' => $request->measurementunit_id,
-            'procurementcat_id' => $request->procurementcat_id,
             'user_id' => $request->user_id
         ]);
 
-        return new ProcurementResource($procurement);
+        return new ProcurementcatResource($procurementcat);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Procurement  $Procurement
+     * @param  \App\Procurementcat  $Procurementcat
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $procurement = Procurement::find($id);
+        $procurementcat = Procurementcat::find($id);
 
-        $procurement->delete();
+        $procurementcat->delete();
 
-        return response()->json(['message' => 'Procurement deleted successfully!']);
+        return response()->json(['message' => 'Procurementcat deleted successfully!']);
 
     }
 }

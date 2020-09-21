@@ -19,8 +19,8 @@ class SaleController extends Controller
         $start = Carbon::now()->startOfMonth();
         $end = Carbon::now();
 
-        $sales15 = Sale::whereBetween('created_at', [$start, $end])->get();
-        $salez15 = Duplicatesale::whereBetween('created_at', [$start, $end])->get();
+        $sales15 = Sale::whereBetween('created_at', [$start, $end])->orderBy('created_at', 'DESC')->get();
+        $salez15 = Duplicatesale::whereBetween('created_at', [$start, $end])->orderBy('created_at', 'DESC')->get();
 
         $sales = $sales15->concat($salez15);
 

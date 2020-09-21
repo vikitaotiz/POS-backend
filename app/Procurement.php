@@ -17,4 +17,9 @@ class Procurement extends Model
     {
     	return $this->belongsTo(Measurementunit::class);
     }
+
+    public function procurementcat()
+    {
+    	return $this->belongsTo(Procurementcat::class);
+    }
 }

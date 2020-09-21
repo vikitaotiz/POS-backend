@@ -204,4 +204,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Confirmedrequest::class);
     }
+
+    public function procurementcats()
+    {
+        return $this->hasMany(Procurementcat::class);
+    }
+
+    public function accepts()
+    {
+        return $this->hasMany(Accept::class);
+    }
 }
