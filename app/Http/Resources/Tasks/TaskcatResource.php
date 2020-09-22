@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Tables;
+namespace App\Http\Resources\Tasks;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TableResource extends JsonResource
+class TaskcatResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,6 +17,7 @@ class TableResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'user' => $this->user->name,
             'created_at' => $this->created_at->format('H:m A, jS D M Y')
         ];
     }

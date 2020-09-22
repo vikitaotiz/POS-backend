@@ -49,6 +49,9 @@ Route::apiResource('/expenses', 'ExpenseController')->middleware('auth:api');
 Route::apiResource('/expensecats', 'ExpensecatController')->middleware('auth:api');
 Route::get('/expenses_in_24hrs', 'ExpenseController@expensesIn24Hrs')->middleware('auth:api');
 
+Route::apiResource('/tasks', 'TaskController')->middleware('auth:api');
+Route::apiResource('/taskcats', 'TaskcatController')->middleware('auth:api');
+
 Route::get('/cashSalesIn24hrs', 'SaleController@cashSalesIn24hrs')->middleware('auth:api');
 Route::get('/mpesaSalesIn24hrs', 'SaleController@mpesaSalesIn24hrs')->middleware('auth:api');
 Route::get('/cardSalesIn24hrs', 'SaleController@cardSalesIn24hrs')->middleware('auth:api');

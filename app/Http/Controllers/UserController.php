@@ -54,11 +54,6 @@ class UserController extends Controller
         $sale3_mario = Sale::whereBetween('created_at', [$from, $to])->where('user_order', 'Mario')->count();
         $sale4_mario = Duplicatesale::whereBetween('created_at', [$from, $to])->where('user_order', 'Mario')->count();
 
-        $sale1_christine = Sale::whereBetween('created_at', [$from, $to])->where('user_order', 'Christine')->sum('amount');
-        $sale2_christine = Duplicatesale::whereBetween('created_at', [$from, $to])->where('user_order', 'Christine')->sum('amount');
-        $sale3_christine = Sale::whereBetween('created_at', [$from, $to])->where('user_order', 'Christine')->count();
-        $sale4_christine = Duplicatesale::whereBetween('created_at', [$from, $to])->where('user_order', 'Christine')->count();
-
         $sale1_angela = Sale::whereBetween('created_at', [$from, $to])->where('user_order', 'Angela')->sum('amount');
         $sale2_angela = Duplicatesale::whereBetween('created_at', [$from, $to])->where('user_order', 'Angela')->sum('amount');
         $sale3_angela = Sale::whereBetween('created_at', [$from, $to])->where('user_order', 'Angela')->count();
@@ -73,14 +68,11 @@ class UserController extends Controller
         $sales_mario = Array( 'name' => 'Mario',
                               'daily_sales' => $sale1_mario + $sale2_mario,
                               'sales_count' => $sale3_mario + $sale4_mario);
-        $sales_christine = Array( 'name' => 'Christine',
-                                  'daily_sales' => $sale1_christine + $sale2_christine,
-                                  'sales_count' => $sale3_christine + $sale4_christine);
         $sales_angela = Array( 'name' => 'Angela',
                                   'daily_sales' => $sale1_angela + $sale2_angela,
                                   'sales_count' => $sale3_angela + $sale4_angela);
 
-        $sales = Array($sales_victor, $sales_charles, $sales_mario, $sales_christine, $sales_angela);
+        $sales = Array($sales_victor, $sales_charles, $sales_mario, $sales_angela);
 
         return $sales;
     }

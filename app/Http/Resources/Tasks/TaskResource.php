@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\Tables;
+namespace App\Http\Resources\Tasks;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TableResource extends JsonResource
+class TaskResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,10 +14,6 @@ class TableResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'created_at' => $this->created_at->format('H:m A, jS D M Y')
-        ];
+        return parent::toArray($request);
     }
 }
